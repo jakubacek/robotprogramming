@@ -2,22 +2,39 @@ from neopixel import NeoPixel
 from microbit import pin0
 from microbit import sleep
 
-def zapni(poradi_led):
-    #TODO
+# min led index
+ledMin = 0
 
-def vypni(poradi_led):
-    #TODO
+# max led index
+ledMax = 8
 
-def nastav_barvu(poradi_led, barva):
-    #TODO
+# initialize led array
+np = NeoPixel(pin0, 8)
 
-np = NeoPixel(pin0,8)
-#TODO: predelejte smycku tak, aby volala vyse definovane funkce
+# Zapni will set n led of array to white colour
+def zapni(n):
+    if validate(n):
+        nastav_barvu(n, (255, 255, 255))
+
+
+# Zapni will set n led of array to black colour
+def vypni(n):
+    if validate(n):
+        nastav_barvu(n, (0, 0, 0))
+
+# nastav barvu will set n led of array to specified colour
+def nastav_barvu(n, barva):
+    if validate(n):
+        np[n] = barva
+        np.write()
+
+# led array boundary validation
+def validate(n):
+    return n >= 0 and n < 8
+
+
 while True:
-    np[0] = (255,255,255) # nastavim prvni ledku, tzn [0] na bilou (RGB hodnoty)
-    np.write()
+    zapni(0)
     sleep(1000)
-    np[0] = (0,0,0) # nastavim prvni ledku, tzn [0] na cernou (RGB hodnoty)
-    np.write()
+    vypni(0)
     sleep(1000)
-
