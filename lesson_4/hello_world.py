@@ -4,8 +4,16 @@ from microbit import display
 
 
 def display_text(text="Ahoj"):
-    while not button_a.is_pressed():
+    while not button_a.was_pressed():
         display.scroll(text)
         sleep(3000)
 
-display_text()
+def display_text_fix(text="Ahoj"):
+    while not button_a.was_pressed():
+        display.scroll(text)
+        if not button_a.was_pressed():
+            sleep(3000)
+        else:
+            break
+
+display_text_fix()
