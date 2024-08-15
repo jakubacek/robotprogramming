@@ -23,9 +23,9 @@ def vypni(n):
         nastav_barvu(n, (0, 0, 0))
 
 # nastav barvu will set n led of array to specified colour
-def nastav_barvu(n, barva):
+def nastav_barvu(n, colour):
     if validate(n):
-        np[n] = barva
+        np[n] = colour
         np.write()
 
 # led array boundary validation
